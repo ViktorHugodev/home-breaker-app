@@ -1,4 +1,4 @@
-module github.com/viktorhugodev/home-breaker-app/go
+module github.com/ViktorHugodev/home-breaker-app/go
 
 go 1.21.1
 
