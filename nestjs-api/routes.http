@@ -39,3 +39,16 @@ Content-Type: application/json
   "asset_id": "asset2",
   "shares": 5
 }
+
+
+### Post order
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "asset_id": "asset2",
+  "shares": 5,
+  "wallet_id": "wallet1",
+  "price": 70,
+  "type": "BUY"
+}
