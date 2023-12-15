@@ -10,6 +10,7 @@ export class OrdersController {
     return this.ordersService.initTransaction(body);
   }
 
+  @Post()
   executeTransaction(@Body() body: ExecuteTransactionDTO) {
     return this.ordersService.executeTransaction(body);
   }
