@@ -1,15 +1,18 @@
-version: "3"
+version: '3'
 
-services: 
+services:
   app:
     build: .
     ports:
       - 3000:3000
+      - 5555:5555
     volumes:
       - .:/home/node/app
+    extra_hosts:
+      - 'host.docker.internal:172.17.0.1'
 
   db:
-    image: bitnami/mongodb:5.0.17
+    image: bitnami/mongodb:5.0.18
     volumes:
       - mongodb_data:/bitnami/mongodb
     environment:
@@ -17,6 +20,7 @@ services:
       MONGODB_REPLICA_SET_MODE: primary
       MONGODB_REPLICA_SET_KEY: 123456
       MONGODB_DATABASE: nest
+  # bitnami/mongodb to enable the replica set needed for rollback with Prisma ORM
 
 volumes:
   mongodb_data:

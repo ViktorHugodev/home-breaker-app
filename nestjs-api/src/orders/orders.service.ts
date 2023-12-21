@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma/prisma.service';
 import { ExecuteTransactionDTO, InitTransactionDTO } from './order.dto';
 import { OrderStatus, OrderType } from '@prisma/client';
+import { ClientKafka } from '@nestjs/microservices';
 
 @Injectable()
 export class OrdersService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    @Inject('ORDERS_PUBLISHER')
+    private kafkaClient: ClientKafka,
+  ) {}
 
-  initTransaction(input: InitTransactionDTO) {
-    return this.prismaService.order.create({
+  async initTransaction(input: InitTransactionDTO) {
+    const order = await this.prismaService.order.create({
       data: {
         asset_id: input.asset_id,
         wallet_id: input.wallet_id,
@@ -20,6 +25,10 @@ export class OrdersService {
         version: 1,
       },
     });
+
+    this.kafkaClient.emit('input', order);
+
+    return order;
   }
 
   async executeTransaction(input: ExecuteTransactionDTO) {
