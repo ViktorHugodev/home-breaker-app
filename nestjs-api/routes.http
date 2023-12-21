@@ -42,13 +42,31 @@ Content-Type: application/json
 
 
 ### Post order
-POST http://localhost:3000/orders
+POST http://localhost:3000/wallet/wallet1/orders
 Content-Type: application/json
 
 {
-  "asset_id": "asset2",
-  "shares": 5,
+  "asset_id": "asset1",
+  "shares": 10,
   "wallet_id": "wallet1",
   "price": 70,
   "type": "BUY"
+}
+
+### get wallet param
+GET http://localhost:3000/wallet/wallet1/orders
+Content-Type: application/json
+
+
+### Post order
+POST http://localhost:3000/wallet/wallet1/orders/execute
+Content-Type: application/json
+
+{
+  "order_id": "65840af1df04cd3ad090d577",
+  "status": "OPEN",
+  "related_investor_id": "Isso",
+  "broker_transaction_id":"test",
+  "negotiated_shares":5,
+  "price": 70
 }

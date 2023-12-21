@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
 }
 
 datasource db {
@@ -31,11 +32,11 @@ model Wallet {
 }
 
 model WalletAsset {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
-  wallet_id String
-  asset_id  String
-  shares    Int    @db.Int
-
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  wallet_id  String
+  asset_id   String
+  shares     Int      @db.Int
+  version    Int
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -46,17 +47,17 @@ model WalletAsset {
 }
 
 model Order {
-  id        String      @id @default(auto()) @map("_id") @db.ObjectId
-  shares    Int         @db.Int
-  price     Float
-  type      OrderType
-  status    OrderStatus
-  partial   Int         @db.Int
-  wallet_id String
-  Wallet    Wallet      @relation(fields: [wallet_id], references: [id])
-  asset_id  String
-  Asset     Asset       @relation(fields: [asset_id], references: [id])
-
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  shares       Int           @db.Int
+  price        Float
+  type         OrderType
+  status       OrderStatus
+  partial      Int           @db.Int
+  wallet_id    String
+  Wallet       Wallet        @relation(fields: [wallet_id], references: [id])
+  asset_id     String
+  Asset        Asset         @relation(fields: [asset_id], references: [id])
+  version      Int
   created_at   DateTime      @default(now())
   updated_at   DateTime      @updatedAt
   Transactions Transaction[]
