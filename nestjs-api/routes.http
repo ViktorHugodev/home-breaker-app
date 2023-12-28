@@ -6,9 +6,9 @@ POST http://localhost:3000/assets
 Content-Type: application/json
 
 {
-  "id": "asset2",
-  "symbol": "A2",
-  "price": 84
+  "id": "asset1",
+  "symbol": "A1",
+  "price": 79
 }
 
 ### get Asset
@@ -36,8 +36,8 @@ POST http://localhost:3000/wallets/wallet1/assets
 Content-Type: application/json
 
 {
-  "asset_id": "asset2",
-  "shares": 5
+  "asset_id": "asset1",
+  "shares": 15
 }
 
 
@@ -63,7 +63,7 @@ POST http://localhost:3000/wallet/wallet1/orders/execute
 Content-Type: application/json
 
 {
-  "order_id": "65840af1df04cd3ad090d577",
+  "order_id": "6586e86f2f8f6ee146513ed6",
   "status": "OPEN",
   "related_investor_id": "Isso",
   "broker_transaction_id":"test",

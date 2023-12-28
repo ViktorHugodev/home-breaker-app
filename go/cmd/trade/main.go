@@ -13,6 +13,8 @@ import (
 )
 
 func main() {
+	// Configura o manipulador de log
+
 	ordersIn := make(chan *entity.Order)
 	ordersOut := make(chan *entity.Order)
 	wg := &sync.WaitGroup{}
@@ -23,15 +25,15 @@ func main() {
 		"bootstrap.servers": "host.docker.internal:9094",
 		"group.id":          "myGroup",
 		"auto.offset.reset": "latest",
+		"debug":             "all",
 	}
 	producer := kafka.NewKafkaProducer(configMap)
 	kafka := kafka.NewConsumer(configMap, []string{"input"})
 
-	go kafka.Consume(kafkaMsgChan) // T2
+	go kafka.Consume(kafkaMsgChan)
 
-	// recebe do canal do kafka, joga no input, processa joga no output e depois publica no kafka
 	book := entity.NewBook(ordersIn, ordersOut, wg)
-	go book.Trade() // T3
+	go book.Trade()
 
 	go func() {
 		for msg := range kafkaMsgChan {

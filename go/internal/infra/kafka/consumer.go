@@ -1,6 +1,10 @@
 package kafka
 
-import ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
+import (
+	"log"
+
+	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
+)
 
 type Consumer struct {
 	ConfigMap *ckafka.ConfigMap
@@ -27,6 +31,8 @@ func (c *Consumer) Consume(msgChan chan *ckafka.Message) error {
 		msg, err := consumer.ReadMessage(-1)
 		if err == nil {
 			msgChan <- msg
+		} else {
+			log.Printf("Error reading Kafka message: %v\n", err)
 		}
 	}
 }
