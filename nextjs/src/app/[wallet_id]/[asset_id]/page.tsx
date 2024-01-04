@@ -1,4 +1,4 @@
-import MyWallet from '../components/MyWallet'
+import MyWallet from '@/app/components/MyWallet'
 
 interface HomeProps {
   params: {
@@ -6,7 +6,7 @@ interface HomeProps {
   }
 }
 
-export default async function HomePage({ params }: HomeProps) {
+export default async function HomeBrokerPage({ params }: HomeProps) {
   return (
     <div>
       <h2>Meus investimentos</h2>
