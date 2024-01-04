@@ -32,7 +32,7 @@ func (c *Consumer) Consume(msgChan chan *ckafka.Message) error {
 		if err == nil {
 			msgChan <- msg
 		} else {
-			log.Printf("Error reading Kafka message: %v\n", err)
+			log.Printf("Error r0ading Kafka message: %v\n", err)
 		}
 	}
 }

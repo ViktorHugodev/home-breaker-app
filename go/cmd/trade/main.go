@@ -25,7 +25,6 @@ func main() {
 		"bootstrap.servers": "host.docker.internal:9094",
 		"group.id":          "myGroup",
 		"auto.offset.reset": "latest",
-		"debug":             "all",
 	}
 	producer := kafka.NewKafkaProducer(configMap)
 	kafka := kafka.NewConsumer(configMap, []string{"input"})

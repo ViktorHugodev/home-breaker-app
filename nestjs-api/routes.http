@@ -46,11 +46,11 @@ POST http://localhost:3000/wallet/wallet1/orders
 Content-Type: application/json
 
 {
-  "asset_id": "asset1",
-  "shares": 10,
+  "asset_id": "asset2",
+  "shares": 5,
   "wallet_id": "wallet1",
-  "price": 70,
-  "type": "BUY"
+  "price": 300,
+  "type": "SELL"
 }
 
 ### get wallet param
@@ -63,7 +63,7 @@ POST http://localhost:3000/wallet/wallet1/orders/execute
 Content-Type: application/json
 
 {
-  "order_id": "6586e86f2f8f6ee146513ed6",
+  "order_id": "6596a4fc82bb96bf6e75822a",
   "status": "OPEN",
   "related_investor_id": "Isso",
   "broker_transaction_id":"test",
