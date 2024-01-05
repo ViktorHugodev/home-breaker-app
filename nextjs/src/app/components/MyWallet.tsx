@@ -5,11 +5,16 @@ interface MyWallet {
 }
 
 async function getWalletAssets(wallet_id: string): Promise<WalletAsset[]> {
-  const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/assets`)
+  const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/assets`, {
+    next: {
+      // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,
+      revalidate: 1,
+    },
+  })
   return response.json()
 }
 
-export default async function MyWallet({ wallet_id }: MyWallet) {
+export async function MyWallet({ wallet_id }: MyWallet) {
   const walletAssets = await getWalletAssets(wallet_id)
   return (
     <ul>

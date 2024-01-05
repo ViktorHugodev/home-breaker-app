@@ -1,4 +1,4 @@
-import MyWallet from '../components/MyWallet'
+import { MyWallet } from '../components/MyWallet'
 
 interface HomeProps {
   params: {
