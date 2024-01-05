@@ -1,3 +1,4 @@
+import { Label, TextInput, Button } from 'flowbite-react'
 import { revalidateTag } from 'next/cache'
 
 async function initTransaction(formData: FormData) {
@@ -29,33 +30,50 @@ async function initTransaction(formData: FormData) {
 interface OrderFormProps {
   wallet_id: string
   asset_id: string
+  type: 'BUY' | 'SELL'
 }
 
-export function OrderForm({ wallet_id, asset_id }: OrderFormProps) {
+export function OrderForm({ wallet_id, asset_id, type }: OrderFormProps) {
   return (
     <div>
       <h2>OrderForm</h2>
-      <form action={initTransaction} className='flex flex-col'>
+      <form action={initTransaction}>
         <input name='asset_id' type='hidden' defaultValue={asset_id} />
         <input name='wallet_id' type='hidden' defaultValue={wallet_id} />
         <input name='type' type='hidden' defaultValue={'BUY'} />
-        <input
-          name='shares'
-          type='number'
-          min={1}
-          step={1}
-          placeholder='quantidade'
-          className='text-black'
-        />
-        <input
-          name='price'
-          type='number'
-          min={1}
-          step={0.1}
-          placeholder='preço'
-          className='text-black'
-        />
-        <button type='submit'>Comprar</button>
+        <div>
+          <div className='mb-2 block'>
+            <Label htmlFor='shares' value='Quantidade' />
+          </div>
+          <TextInput
+            id='shares'
+            name='shares'
+            required
+            type='number'
+            min={1}
+            step={1}
+            defaultValue={1}
+          />
+        </div>
+        <br />
+        <div>
+          <div className='mb-2 block'>
+            <Label htmlFor='shares' value='Preço R$' />
+          </div>
+          <TextInput
+            id='price'
+            name='price'
+            required
+            type='number'
+            min={1}
+            step={1}
+            defaultValue={1}
+          />
+        </div>
+        <br />
+        <Button type='submit' color={type === 'BUY' ? 'green' : 'red'}>
+          Confirmar {type === 'BUY' ? 'compra' : 'venda'}
+        </Button>
       </form>
     </div>
   )
