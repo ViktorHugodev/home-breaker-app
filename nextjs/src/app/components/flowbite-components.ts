@@ -14,5 +14,5 @@ export const NavbarToggle = Navbar.Toggle
 export const NavbarCollapse = Navbar.Collapse
 export const NavbarLink = Navbar.Link
 
-export const TabsGroup = Tabs.Group
+export const TabsGroup = Tabs
 export const TabsItem = Tabs.Item

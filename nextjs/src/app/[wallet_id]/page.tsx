@@ -9,7 +9,9 @@ interface HomeProps {
 export default async function HomePage({ params }: HomeProps) {
   return (
     <div>
-      <h2>Meus investimentos</h2>
+      <article className='format format-invert my-6'>
+        <h1>Meus investimentos</h1>
+      </article>
       <MyWallet wallet_id={params.wallet_id} />
     </div>
   )

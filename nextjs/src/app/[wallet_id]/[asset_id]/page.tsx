@@ -1,5 +1,7 @@
 import { MyOrders } from '@/app/components/MyOrders'
 import { OrderForm } from '@/app/components/OrderForm'
+import { TabsGroup, TabsItem } from '@/app/components/flowbite-components'
+import { HiArrowUp, HiShoppingCart } from '@/app/components/react-icons/hi'
 
 interface HomeProps {
   params: {
@@ -14,7 +16,14 @@ export default async function HomeBrokerPage({ params }: HomeProps) {
       <h2>Home Broker</h2>
       <div className='flex '>
         <div className='flex flex-col'>
-          <OrderForm asset_id={params.asset_id} wallet_id={params.wallet_id} />
+          <TabsGroup aria-label='Default tabs' style='pills'>
+            <TabsItem active title='Comprar' icon={HiShoppingCart}>
+              <OrderForm wallet_id={params.wallet_id} asset_id={params.asset_id} type='BUY' />
+            </TabsItem>
+            <TabsItem title='Vender' icon={HiArrowUp}>
+              <OrderForm wallet_id={params.wallet_id} asset_id={params.asset_id} type='SELL' />
+            </TabsItem>
+          </TabsGroup>
           <div>
             <MyOrders wallet_id={params.wallet_id} />
           </div>

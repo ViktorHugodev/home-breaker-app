@@ -19,7 +19,7 @@ async function getOrders(wallet_id: string): Promise<Order[]> {
     next: {
       tags: [`orders-wallet-${wallet_id}`],
       // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,
-      revalidate: 1,
+      // revalidate: 1,
     },
   })
   return response.json()
