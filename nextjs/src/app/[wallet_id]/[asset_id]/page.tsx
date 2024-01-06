@@ -1,3 +1,4 @@
+import { ChartComponent } from '@/app/components/ChartComponent'
 import { MyOrders } from '@/app/components/MyOrders'
 import { OrderForm } from '@/app/components/OrderForm'
 import { TabsGroup, TabsItem } from '@/app/components/flowbite-components'
@@ -12,8 +13,10 @@ interface HomeProps {
 
 export default async function HomeBrokerPage({ params }: HomeProps) {
   return (
-    <div>
-      <h2>Home Broker</h2>
+    <main className='flex flex-grow flex-col container mx-auto p-2'>
+      <article className='format format-invert'>
+        <h1>Home broker - {params.asset_id}</h1>
+      </article>
       <div className='flex '>
         <div className='flex flex-col'>
           <TabsGroup aria-label='Default tabs' style='pills'>
@@ -29,6 +32,6 @@ export default async function HomeBrokerPage({ params }: HomeProps) {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }
