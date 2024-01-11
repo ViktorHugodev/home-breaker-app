@@ -1,4 +1,3 @@
-import { ChartComponent } from '@/app/components/ChartComponent'
 import { MyOrders } from '@/app/components/MyOrders'
 import { OrderForm } from '@/app/components/OrderForm'
 import { TabsGroup, TabsItem } from '@/app/components/flowbite-components'

@@ -2,7 +2,7 @@
 
 import { Flowbite, ThemeProps } from 'flowbite-react'
 import { FC, PropsWithChildren } from 'react'
-const colors = require('tailwindcss/colors')
+
 const theme: ThemeProps = {
   theme: {},
   // theme: {

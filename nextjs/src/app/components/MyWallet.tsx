@@ -17,7 +17,7 @@ async function getWalletAssets(wallet_id: string): Promise<WalletAsset[]> {
   const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/assets`, {
     next: {
       // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,
-      // revalidate: 1,
+      revalidate: 1,
     },
   })
   return response.json()
