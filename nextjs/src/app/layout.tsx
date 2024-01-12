@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en' className='dark'>
       <body className='bg-gray-900 h-screen flex flex-col dark'>
         <DefaultNavbar />
-        <FlowbiteContext>{children}</FlowbiteContext>
+        {children}
       </body>
     </html>
   )
