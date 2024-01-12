@@ -9,7 +9,7 @@ async function initTransaction(formData: FormData) {
   const asset_id = formData.get('asset_id')
   const type = formData.get('type')
   console.log(shares, price, asset_id, type)
-  const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/orders`, {
+  const response = await fetch(`http://localhost:3000/wallets/${wallet_id}/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

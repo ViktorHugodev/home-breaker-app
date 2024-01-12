@@ -1,5 +1,5 @@
 import FlowbiteContext from './components/FlowbiteContext'
-import DefaultNavbar from './components/NavBar'
+import { DefaultNavbar } from './components/NavBar'
 import './globals.css'
 
 export const metadata = {

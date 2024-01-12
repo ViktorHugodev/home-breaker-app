@@ -5,7 +5,7 @@ import { usePathname, useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
-export default function DefaultNavbar() {
+export function DefaultNavbar() {
   const pathname = usePathname()
   const params = useParams()
 

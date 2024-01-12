@@ -1,3 +1,5 @@
+'use client'
+
 import { WalletAsset } from '@/models'
 import {
   Table,
@@ -8,23 +10,31 @@ import {
   TableRow,
 } from './flowbite-components'
 import Link from 'next/link'
+import useSWR from 'swr'
+import { fetcher } from '@/utils'
 
 interface MyWallet {
   wallet_id: string
 }
 
-async function getWalletAssets(wallet_id: string): Promise<WalletAsset[]> {
-  const response = await fetch(`http://localhost:8000/wallets/${wallet_id}/assets`, {
-    next: {
-      // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,
-      // revalidate: 1,
-    },
-  })
-  return response.json()
-}
+// async function getWalletAssets(wallet_id: string): Promise<WalletAsset[]> {
+//   const response = await fetch(`http://localhost:3000/wallets/${wallet_id}/assets`, {
+//     next: {
+//       // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,
+//       revalidate: 1,
+//     },
+//   })
+//   return response.json()
+// }
 
-export async function MyWallet({ wallet_id }: MyWallet) {
-  const walletAssets = await getWalletAssets(wallet_id)
+export function MyWallet({ wallet_id }: MyWallet) {
+  // const walletAssets = await getWalletAssets(wallet_id)
+  const { data, error } = useSWR(`http://localhost:3000/wallets/${wallet_id}/assets`, fetcher, {
+    fallbackData: [],
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  })
+  const walletAssets = data as WalletAsset[]
   return (
     <Table>
       <TableHead>
