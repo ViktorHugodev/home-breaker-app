@@ -11,3 +11,7 @@ export function isHomeBrokerClosed() {
 
   return currentDate > closeDate
 }
+
+export function fetcher(url: string) {
+  return fetch(url).then(res => res.json())
+}

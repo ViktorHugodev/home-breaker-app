@@ -21,7 +21,7 @@ type ExecuteTransactionMessage = {
   }[];
 };
 
-@Controller('wallet/:wallet_id/orders')
+@Controller('wallets/:wallet_id/orders')
 export class OrdersController {
   constructor(private readonly ordersService: OrdersService) {}
 
