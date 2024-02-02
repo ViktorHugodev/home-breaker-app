@@ -15,5 +15,5 @@ export async function GET(request: NextRequest, { params }: RequestParams) {
       revalidate: 1,
     },
   })
-  return NextResponse.json(response.json())
+  return NextResponse.json(await response.json())
 }

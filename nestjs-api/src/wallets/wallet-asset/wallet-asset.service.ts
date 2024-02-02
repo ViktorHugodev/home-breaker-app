@@ -1,9 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma/prisma.service';
+import { WalletAsset } from './wallet-asset.schema';
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class WalletAssetService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    @InjectModel(WalletAsset.name)
+    private walletAssetModel: Model<WalletAsset>,
+  ) {}
 
   all(filter: { wallet_id: string }) {
     return this.prismaService.walletAsset.findMany({
@@ -30,6 +38,37 @@ export class WalletAssetService {
         shares: input.shares,
         version: 1,
       },
+    });
+  }
+  subscribeEvents(wallet_id: string): Observable<{
+    event: 'wallet-asset-updated';
+    data: WalletAsset;
+  }> {
+    return new Observable((observer) => {
+      this.walletAssetModel
+        .watch(
+          [
+            {
+              $match: {
+                operationType: 'update',
+                'fullDocument.wallet_id': wallet_id,
+              },
+            },
+          ],
+          { fullDocument: 'updateLookup' },
+        )
+        .on('change', async (data) => {
+          console.log('DATA =>', data);
+          const walletAsset = await this.prismaService.walletAsset.findUnique({
+            where: {
+              id: data.fullDocument._id + '',
+            },
+          });
+          observer.next({
+            event: 'wallet-asset-updated',
+            data: walletAsset,
+          });
+        });
     });
   }
 }

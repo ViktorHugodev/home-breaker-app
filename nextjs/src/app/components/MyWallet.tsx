@@ -9,9 +9,10 @@ import {
   TableHeadCell,
   TableRow,
 } from './flowbite-components'
+import { fetcher } from '@/utils'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { fetcher } from '@/utils'
+import useSWRSubscription, { SWRSubscriptionOptions } from 'swr/subscription'
 
 interface MyWallet {
   wallet_id: string
@@ -29,12 +30,44 @@ interface MyWallet {
 
 export function MyWallet({ wallet_id }: MyWallet) {
   // const walletAssets = await getWalletAssets(wallet_id)
-  const { data, error } = useSWR(`http://localhost:3000/wallets/${wallet_id}/assets`, fetcher, {
+  const {
+    data: walletAssets,
+    error,
+    mutate: mutateWalletAsset,
+  } = useSWR<WalletAsset[]>(`http://localhost:3333/api/wallets/${wallet_id}/assets`, fetcher, {
     fallbackData: [],
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
   })
-  const walletAssets = data as WalletAsset[]
+
+  const { data: walletAssetUpdated } = useSWRSubscription(
+    `http://localhost:3333/api/wallets/${wallet_id}/events`,
+    (path, { next }: SWRSubscriptionOptions) => {
+      console.log(path, next)
+      const eventSource = new EventSource(path)
+      eventSource.addEventListener('wallet-asset-update', async event => {
+        const walletAssetUpdated: WalletAsset = JSON.parse(event.data)
+        // next(walletAssetUpdated)
+        await mutateWalletAsset(prev => {
+          const foundIndex = prev?.findIndex(
+            walletAsset => walletAsset.asset_id === walletAssetUpdated.asset_id,
+          )
+          if (foundIndex !== -1) {
+            prev![foundIndex!].shares = walletAssetUpdated.shares
+          }
+          return [...prev!]
+        }, false)
+        next(walletAssetUpdated)
+      })
+      eventSource.onmessage = event => {
+        const walletAssetUpdated = JSON.parse(event.data)
+        next(walletAssetUpdated)
+      }
+      return () => {
+        eventSource.close()
+      }
+    },
+  )
   return (
     <Table>
       <TableHead>
