@@ -7,8 +7,6 @@ interface RequestParams {
 }
 
 export async function GET(request: NextRequest, { params }: RequestParams) {
-  console.log(params)
-  const url = 'http://localhost:3000/wallets/wallet1/assets'
   const response = await fetch(`http://localhost:3000/wallets/${params.wallet_id}/assets`, {
     next: {
       // revalidate: isHomeBrokerClosed() ? 60 * 60 : 10,

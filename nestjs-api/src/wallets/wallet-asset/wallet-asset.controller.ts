@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Sse } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Sse,
+  MessageEvent,
+} from '@nestjs/common';
 import { WalletAssetService } from './wallet-asset.service';
 import { Observable, map } from 'rxjs';
 
@@ -22,10 +30,10 @@ export class WalletAssetController {
   }
 
   @Sse('events')
-  events(@Param('wallet_id') wallet_id: string): Observable<any> {
+  events(@Param('wallet_id') wallet_id: string): Observable<MessageEvent> {
     return this.walletAssetService.subscribeEvents(wallet_id).pipe(
       map((event) => ({
-        type: 'wallet-asset-updated',
+        type: event.event,
         data: event.data,
       })),
     );
