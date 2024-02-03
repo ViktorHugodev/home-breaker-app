@@ -1,5 +1,6 @@
 import { MyOrders } from '@/app/components/MyOrders'
 import { OrderForm } from '@/app/components/OrderForm'
+import { SyncOrders } from '@/app/components/SyncOrders'
 import { TabsGroup, TabsItem } from '@/app/components/flowbite-components'
 
 interface HomeProps {
@@ -26,7 +27,9 @@ export default async function HomeBrokerPage({ params }: HomeProps) {
             </TabsItem>
           </TabsGroup>
           <div>
-            <MyOrders wallet_id={params.wallet_id} />
+            <SyncOrders wallet_id={params.wallet_id}>
+              <MyOrders wallet_id={params.wallet_id} />
+            </SyncOrders>
           </div>
         </div>
       </div>
