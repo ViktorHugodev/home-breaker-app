@@ -28,6 +28,7 @@ export function MyWallet({ wallet_id }: MyWallet) {
       const eventSource = new EventSource(path)
       eventSource.addEventListener('asset-price-changed', async event => {
         const assetChanged: Asset = JSON.parse(event.data)
+        console.error('🚀 ~ MyWallet ~ assetChanged:', assetChanged)
         await mutateWalletAssets(prev => {
           const foundIndex = prev!.findIndex(
             walletAsset => walletAsset.asset_id === assetChanged.id,
@@ -66,7 +67,7 @@ export function MyWallet({ wallet_id }: MyWallet) {
             walletAsset => walletAsset.asset_id === walletAssetUpdated.asset_id,
           )
           if (foundIndex !== -1) {
-            console.log('entrou aqui')
+            console.log('entrou aqui walletAsset')
             prev![foundIndex!].shares = walletAssetUpdated.shares
           }
 
@@ -75,7 +76,7 @@ export function MyWallet({ wallet_id }: MyWallet) {
         next(null, walletAssetUpdated)
       })
       eventSource.onerror = error => {
-        console.error(error)
+        console.error('Event source - asset =>', error)
         eventSource.close()
       }
       return () => {
