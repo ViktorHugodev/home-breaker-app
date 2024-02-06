@@ -1,5 +1,4 @@
-import { Order, WalletAsset } from '@/models'
-import { isHomeBrokerClosed } from '@/utils'
+import { Order } from '@/models'
 import {
   Badge,
   Table,
