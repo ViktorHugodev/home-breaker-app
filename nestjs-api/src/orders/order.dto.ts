@@ -6,7 +6,6 @@ export interface InitTransactionDTO {
   shares: number;
   price: number;
   type: OrderType;
-  status: OrderStatus;
 }
 
 export interface ExecuteTransactionDTO {

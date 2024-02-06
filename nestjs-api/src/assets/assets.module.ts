@@ -14,5 +14,6 @@ import { AssetDaily, AssetDailySchema } from './asset-daily.schema';
   ],
   controllers: [AssetsController],
   providers: [AssetsService],
+  exports: [AssetsService],
 })
 export class AssetsModule {}

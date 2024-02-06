@@ -17,5 +17,6 @@ import {
   ],
   controllers: [WalletsController, WalletAssetController],
   providers: [WalletsService, WalletAssetService],
+  exports: [WalletsService, WalletAssetService],
 })
 export class WalletsModule {}
