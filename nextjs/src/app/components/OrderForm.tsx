@@ -36,7 +36,6 @@ interface OrderFormProps {
 export function OrderForm({ wallet_id, asset_id, type }: OrderFormProps) {
   return (
     <div>
-      <h2>OrderForm</h2>
       <form action={initTransaction}>
         <input name='asset_id' type='hidden' defaultValue={asset_id} />
         <input name='wallet_id' type='hidden' defaultValue={wallet_id} />
