@@ -4,6 +4,8 @@ import { AssetsController } from './assets.controller';
 import { Asset, AssetSchema } from './asset.schema';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AssetDaily, AssetDailySchema } from './asset-daily.schema';
+import { AssetsDailyController } from './assets-daily.controller';
+import { AssetsDailyService } from './assets-daily.service';
 
 @Module({
   imports: [
@@ -12,8 +14,8 @@ import { AssetDaily, AssetDailySchema } from './asset-daily.schema';
       { name: AssetDaily.name, schema: AssetDailySchema },
     ]),
   ],
-  controllers: [AssetsController],
-  providers: [AssetsService],
+  controllers: [AssetsController, AssetsDailyController],
+  providers: [AssetsService, AssetsDailyService],
   exports: [AssetsService],
 })
 export class AssetsModule {}
