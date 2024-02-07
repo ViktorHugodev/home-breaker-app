@@ -1,17 +1,41 @@
 'use client'
 
-import { Navbar } from 'flowbite-react'
+import { Dropdown, Navbar } from 'flowbite-react'
 import { usePathname, useParams } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+
+interface WalletProps {
+  id: string
+}
+;[]
 
 export function DefaultNavbar() {
   const pathname = usePathname()
   const params = useParams()
+  const [walletData, setWalletData] = useState<WalletProps[]>([])
+  console.log('🚀 ~ DefaultNavbar ~ walletData:', walletData)
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/wallets')
+        if (response.ok) {
+          const data = await response.json()
+          setWalletData(data)
+        } else {
+          console.error('Erro ao buscar dados da API')
+        }
+      } catch (error) {
+        console.error('Erro na requisição à API:', error)
+      }
+    }
+    fetchData()
+  }, [])
   return (
     <Navbar fluid rounded>
-      <Navbar.Brand href='https://flowbite-react.com'>
+      <Navbar.Brand href='#'>
         <Image
           className='mr-3 h-6 sm:h-9'
           alt='Full Cycle Invest'
@@ -34,7 +58,18 @@ export function DefaultNavbar() {
         </Navbar.Link>
         <Navbar.Link href='#'>Ativos</Navbar.Link>
       </Navbar.Collapse>
-      <div className='flex md:order-2 text-white'>Olá {params.wallet_id}</div>
+      <Dropdown
+        label={params.wallet_id ? params.wallet_id : 'Escolha sua carteira'}
+        dismissOnClick={false}
+      >
+        {walletData.map(wallet => {
+          return (
+            <Dropdown.Item key={wallet.id}>
+              <Link href={`/${wallet.id}`}>{wallet.id}</Link>
+            </Dropdown.Item>
+          )
+        })}
+      </Dropdown>
     </Navbar>
   )
 }

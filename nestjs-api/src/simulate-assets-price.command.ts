@@ -101,7 +101,7 @@ export class SimulateAssetsPriceCommand extends CommandRunner {
     const range = (start: number, end: number) =>
       Array.from({ length: end - start }, (_, i) => i + start);
 
-    for (const index of range(1, 100)) {
+    for (const index of range(1, 5)) {
       await this.ordersService.initTransaction({
         asset_id: 'asset1',
         wallet_id: 'wallet1',
