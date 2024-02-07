@@ -110,6 +110,6 @@ enum OrderType {
 enum OrderStatus {
   PENDING
   OPEN
-  CLOSE
+  CLOSED
   FAILED
 }

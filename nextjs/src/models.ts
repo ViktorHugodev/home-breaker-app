@@ -22,7 +22,7 @@ export type Order = {
   type: 'BUY' | 'SELL'
   created_at: string
   updated_at: string
-  status: 'PENDING' | 'OPEN' | 'CLOSE' | 'FAILED'
+  status: 'PENDING' | 'OPEN' | 'CLOSED' | 'FAILED'
   Asset: Pick<Asset, 'id' | 'symbol'>
 }
 
