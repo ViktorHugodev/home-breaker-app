@@ -17,7 +17,7 @@ type ExecuteTransactionMessage = {
   investor_id: string;
   asset_id: string;
   order_type: string;
-  status: 'OPEN' | 'CLOSE';
+  status: 'OPEN' | 'CLOSED';
   partial: number;
   shares: number;
   transactions: {

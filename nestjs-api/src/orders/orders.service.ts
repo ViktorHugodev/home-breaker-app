@@ -69,7 +69,7 @@ export class OrdersService {
         },
       });
 
-      if (input.status === OrderStatus.CLOSE) {
+      if (input.status === OrderStatus.CLOSED) {
         await prisma.asset.update({
           where: { id: order.asset_id },
           data: {

@@ -10,7 +10,7 @@ export interface InitTransactionDTO {
 
 export interface ExecuteTransactionDTO {
   order_id: string;
-  status: 'OPEN' | 'CLOSE';
+  status: 'OPEN' | 'CLOSED';
   related_investor_id: string;
   price: number;
   broker_transaction_id: string;
