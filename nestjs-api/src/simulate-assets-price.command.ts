@@ -26,9 +26,9 @@ export class SimulateAssetsPriceCommand extends CommandRunner {
 
     await this.createWallets();
 
-    await this.createWalletAssets();
+    await this.createWallets();
 
-    await this.createOrders();
+    // await this.createOrders();
   }
 
   async cleanDatabase() {
@@ -46,97 +46,97 @@ export class SimulateAssetsPriceCommand extends CommandRunner {
 
   async createAssets() {
     await this.assetsService.create({
-      id: 'asset1',
-      price: 100,
-      symbol: 'asset1',
+      id: 'PETR4',
+      price: 28.44, // Exemplo de preço, pode variar
+      symbol: 'PETR4',
     });
-    console.log('Asset 1 created');
+    console.log('Ativo PETR4 criado');
+
     await this.assetsService.create({
-      id: 'asset2',
-      price: 200,
-      symbol: 'asset2',
+      id: 'VALE3',
+      price: 68.15, // Exemplo de preço, pode variar
+      symbol: 'VALE3',
     });
-    console.log('Asset 2 created');
+    console.log('Ativo VALE3 criado');
+
+    await this.assetsService.create({
+      id: 'ITUB4',
+      price: 22.3, // Exemplo de preço, pode variar
+      symbol: 'ITUB4',
+    });
+    console.log('Ativo ITUB4 criado');
+
+    await this.assetsService.create({
+      id: 'MGLU3',
+      price: 4.73, // Exemplo de preço, pode variar
+      symbol: 'MGLU3',
+    });
+    console.log('Ativo MGLU3 criado');
   }
 
   async createWallets() {
     await this.walletsService.create({
-      id: 'wallet1',
+      id: 'CarteiraDividendos',
     });
-    console.log('Wallet 1 created');
+    console.log('Carteira de Dividendos criada');
+
     await this.walletsService.create({
-      id: 'wallet2',
+      id: 'CarteiraCrescimento',
     });
-    console.log('Wallet 2 created');
+    console.log('Carteira de Crescimento criada');
+
+    await this.walletsService.create({
+      id: 'CarteiraConservadora',
+    });
+    console.log('Carteira Conservadora criada');
+
+    await this.walletsService.create({
+      id: 'CarteiraAgressiva',
+    });
+    console.log('Carteira Agressiva criada');
   }
 
-  async createWalletAssets() {
-    await this.walletAssetsService.create({
-      asset_id: 'asset1',
-      wallet_id: 'wallet1',
-      shares: 10000,
-    });
-    await this.walletAssetsService.create({
-      asset_id: 'asset2',
-      wallet_id: 'wallet1',
-      shares: 20000,
-    });
-    console.log('Wallet 1 assets created');
+  // async createOrders() {
+  //   console.log('Creating orders...');
+  //   const range = (start: number, end: number) =>
+  //     Array.from({ length: end - start }, (_, i) => i + start);
 
-    await this.walletAssetsService.create({
-      asset_id: 'asset1',
-      wallet_id: 'wallet2',
-      shares: 5000,
-    });
-    await this.walletAssetsService.create({
-      asset_id: 'asset2',
-      wallet_id: 'wallet2',
-      shares: 1000,
-    });
-    console.log('Wallet 2 assets created');
-  }
+  //   for (const index of range(1, 5)) {
+  //     await this.ordersService.initTransaction({
+  //       asset_id: 'asset1',
+  //       wallet_id: 'wallet1',
+  //       price: 100 + index,
+  //       shares: 1000,
+  //       type: 'SELL',
+  //     });
 
-  async createOrders() {
-    console.log('Creating orders...');
-    const range = (start: number, end: number) =>
-      Array.from({ length: end - start }, (_, i) => i + start);
+  //     await this.ordersService.initTransaction({
+  //       asset_id: 'asset1',
+  //       wallet_id: 'wallet2',
+  //       price: 100 + index + 10,
+  //       shares: 1000,
+  //       type: 'BUY',
+  //     });
 
-    for (const index of range(1, 5)) {
-      await this.ordersService.initTransaction({
-        asset_id: 'asset1',
-        wallet_id: 'wallet1',
-        price: 100 + index,
-        shares: 1000,
-        type: 'SELL',
-      });
+  //     await this.ordersService.initTransaction({
+  //       asset_id: 'asset2',
+  //       wallet_id: 'wallet1',
+  //       price: 200 + index,
+  //       shares: 1000,
+  //       type: 'SELL',
+  //     });
 
-      await this.ordersService.initTransaction({
-        asset_id: 'asset1',
-        wallet_id: 'wallet2',
-        price: 100 + index + 10,
-        shares: 1000,
-        type: 'BUY',
-      });
+  //     await this.ordersService.initTransaction({
+  //       asset_id: 'asset2',
+  //       wallet_id: 'wallet2',
+  //       price: 200 + index + 10,
+  //       shares: 1000,
+  //       type: 'BUY',
+  //     });
 
-      await this.ordersService.initTransaction({
-        asset_id: 'asset2',
-        wallet_id: 'wallet1',
-        price: 200 + index,
-        shares: 1000,
-        type: 'SELL',
-      });
-
-      await this.ordersService.initTransaction({
-        asset_id: 'asset2',
-        wallet_id: 'wallet2',
-        price: 200 + index + 10,
-        shares: 1000,
-        type: 'BUY',
-      });
-
-      await sleep(2000);
-    }
-  }
+  //     await sleep(2000);
+  //   }
+  // }
 }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
