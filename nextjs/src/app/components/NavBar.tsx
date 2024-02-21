@@ -37,8 +37,8 @@ export function DefaultNavbar() {
       <Navbar.Brand href='#'>
         <Image
           className='mr-3 h-6 sm:h-9'
-          alt='Full Cycle Invest'
-          src='/logo.png'
+          alt='Home Broker Investments'
+          src='/logo-hb.png'
           width={37}
           height={40}
         />
