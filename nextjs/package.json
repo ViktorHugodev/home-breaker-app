@@ -1,6 +1,6 @@
 {
-  "name": "nextjs",
-  "version": "0.1.0",
+  "name": "HomeBroker",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3333",
@@ -13,7 +13,7 @@
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",
     "lightweight-charts": "^4.1.2",
-    "next": "14.0.4",
+    "next": "13.4.6",
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4"
