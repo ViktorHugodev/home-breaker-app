@@ -3,6 +3,7 @@ import { MyOrders } from '@/app/components/MyOrders'
 import { OrderForm } from '@/app/components/OrderForm'
 import { SyncOrders } from '@/app/components/SyncOrders'
 import { Card, TabsGroup, TabsItem } from '@/app/components/flowbite-components'
+import { HiShoppingCart, HiArrowUp } from '@/app/components/react-icons/hi'
 
 interface HomeProps {
   params: {
@@ -28,10 +29,10 @@ export default async function HomeBrokerPage({ params }: HomeProps) {
               }}
             >
               <TabsGroup aria-label='Default tabs' style='pills'>
-                <TabsItem active title='Comprar'>
+                <TabsItem active title='Comprar' icon={HiShoppingCart}>
                   <OrderForm wallet_id={params.wallet_id} asset_id={params.asset_id} type='BUY' />
                 </TabsItem>
-                <TabsItem title='Vender'>
+                <TabsItem title='Vender' icon={HiArrowUp}>
                   <OrderForm wallet_id={params.wallet_id} asset_id={params.asset_id} type='SELL' />
                 </TabsItem>
               </TabsGroup>
