@@ -55,7 +55,7 @@ export function DefaultNavbar() {
         >
           Home
         </Navbar.Link>
-        <Navbar.Link href='#'>Ativos</Navbar.Link>
+        <Navbar.Link href={`/${params.wallet_id}/home-broker`}>Ativos</Navbar.Link>
       </Navbar.Collapse>
       <Dropdown
         label={params.wallet_id ? params.wallet_id : 'Escolha sua carteira'}
