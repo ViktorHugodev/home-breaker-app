@@ -1,35 +1,46 @@
-# Full Cycle Invest
+# HomeBroker Investments
 
-Olá, seja muito(a) bem-vindo(a) ao FullCycle Invest, esse projeto tem como objetivo mostrar um pouco das minha habilidades técnicas, criatividade e paixão por criar soluções de tecnologia e resolução de problemas. Sinta-se à vontade para explorar, "forkar" e contribuir, valeu!!
+## Sobre
 
-## Tabela de Conteúdos
+HomeBroker é um sistema de negociação de ações e fundos imobiliários que facilita operações de compra e venda no mercado financeiro.
 
-- [Introdução](#introdução)
-- [Tecnologias](#tecnologias)
-- [Contato](#contato)
-- [Licença](#licença)
+## Objetivo
 
-## Introdução
+Desenvolver uma plataforma eficiente e de fácil uso para negociação de ações e fundos imobiliários.
 
-O FullCycle Invest é um projeto criado na Imersão Full Stack & Full Cycle que simula a Bolsa de Valores para dar match na compra e venda de ações e um home broker, onde as ofertas serão submetidas, além de indicadores em tempo real.
+## Features
 
-## Tecnologias
+- Compra e venda de ações.
+- Gestão de carteira de investimentos.
+- Simulação de mercado.
 
-As Tecnologias utilizadas no projeto FullCycle Invest são:
+## Tecnologias e Ferramentas
 
-- Frontend: [Next.js](https://nextjs.org/)
-- Backend: [Nest.js](https://nestjs.com/)
-- Containerização: [Docker](https://www.docker.com/)
-- Stream de dados: [Apache Kafka](https://kafka.apache.org/)
+- **Front-end**: Next.js, TypeScript, TailwindCSS, Radix UI.
+- **Back-end**: Node.js, TypeScript, Prisma, NestJS, Kafka, MongoDB.
+- **Infraestrutura**: Docker para containerização. Cada diretório (`go/`, `nextjs/`, `nestjs-api/`) inclui um `docker-compose.yaml`.
 
-## Contato
+## Estrutura do Projeto
 
-Vamos nos conectar, manda um alô lá no [Linkedin](https://www.linkedin.com/in/viktorhugodev/).
+- `go/`: Código-fonte em Go.
+- `nextjs/`: Código-fonte do front-end.
+- `nestjs-api/`: Código-fonte do back-end.
+
+## Instalação e Execução
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seuusuario/homebroker-investments.git
+   ```
+
+# Para cada serviço (front-end, back-end), navegue até a pasta correspondente e execute:
+
+- docker-compose up -d
 
 ## Licença
 
-Este projeto está sob a Licença MIT.
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
----
+## Contato
 
-Muito obrigado!!
+LinkedIn: [viktorhugodev](https://www.linkedin.com/in/viktorhugodev/)
