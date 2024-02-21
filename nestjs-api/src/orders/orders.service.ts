@@ -23,11 +23,11 @@ export class OrdersService {
       data: {
         asset_id: input.asset_id,
         wallet_id: input.wallet_id,
-        shares: input.shares,
-        price: input.price,
+        shares: +input.shares,
+        price: +input.price,
         type: input.type,
         status: OrderStatus.PENDING,
-        partial: input.shares,
+        partial: +input.shares,
         version: 1,
       },
     });

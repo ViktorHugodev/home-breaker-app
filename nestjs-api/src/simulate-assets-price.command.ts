@@ -47,28 +47,28 @@ export class SimulateAssetsPriceCommand extends CommandRunner {
   async createAssets() {
     await this.assetsService.create({
       id: 'PETR4',
-      price: 28.44, // Exemplo de preço, pode variar
+      price: 28.44,
       symbol: 'PETR4',
     });
     console.log('Ativo PETR4 criado');
 
     await this.assetsService.create({
       id: 'VALE3',
-      price: 68.15, // Exemplo de preço, pode variar
+      price: 68.15,
       symbol: 'VALE3',
     });
     console.log('Ativo VALE3 criado');
 
     await this.assetsService.create({
       id: 'ITUB4',
-      price: 22.3, // Exemplo de preço, pode variar
+      price: 22.3,
       symbol: 'ITUB4',
     });
     console.log('Ativo ITUB4 criado');
 
     await this.assetsService.create({
       id: 'MGLU3',
-      price: 4.73, // Exemplo de preço, pode variar
+      price: 4.73,
       symbol: 'MGLU3',
     });
     console.log('Ativo MGLU3 criado');

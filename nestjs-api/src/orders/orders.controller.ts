@@ -44,6 +44,7 @@ export class OrdersController {
     @Param('wallet_id') wallet_id: string,
     @Body() body: Omit<InitTransactionDTO, 'wallet_id'>,
   ) {
+    console.log('BODY =>', body);
     return this.ordersService.initTransaction({
       ...body,
       wallet_id,
