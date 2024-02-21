@@ -9,7 +9,7 @@ async function initTransaction(formData: FormData) {
   const asset_id = formData.get('asset_id')
   const type = formData.get('type')
   console.log('Compras =>', shares, price, asset_id, type)
-  const response = await fetch(`http://host.docker.internal:3000/wallets/${wallet_id}/orders`, {
+  const response = await fetch(`http://localhost:3000/wallets/${wallet_id}/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,13 +34,14 @@ interface OrderFormProps {
   type: 'BUY' | 'SELL'
 }
 
-export function OrderForm({ wallet_id, asset_id, type }: OrderFormProps) {
+export function OrderForm(props: OrderFormProps) {
   return (
     <div>
+      <h1>Order Form</h1>
       <form action={initTransaction}>
-        <input name='asset_id' type='hidden' defaultValue={asset_id} />
-        <input name='wallet_id' type='hidden' defaultValue={wallet_id} />
-        <input name='type' type='hidden' defaultValue={'BUY'} />
+        <input name='asset_id' type='hidden' defaultValue={props.asset_id} />
+        <input name='wallet_id' type='hidden' defaultValue={props.wallet_id} />
+        <input name='type' type='hidden' defaultValue={props.type ? props.type : 'BUY'} />
         <div>
           <div className='mb-2 block'>
             <Label htmlFor='shares' value='Quantidade' />
@@ -71,8 +72,8 @@ export function OrderForm({ wallet_id, asset_id, type }: OrderFormProps) {
           />
         </div>
         <br />
-        <Button type='submit' color={type === 'BUY' ? 'green' : 'red'}>
-          Confirmar {type === 'BUY' ? 'compra' : 'venda'}
+        <Button type='submit' color={props.type === 'BUY' ? 'green' : 'red'}>
+          Confirmar {props.type === 'BUY' ? 'compra' : 'venda'}
         </Button>
       </form>
     </div>

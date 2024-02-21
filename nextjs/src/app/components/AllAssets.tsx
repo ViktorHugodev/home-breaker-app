@@ -52,8 +52,8 @@ export function AssetStore() {
             <TableCell>{asset.price}</TableCell>
 
             <TableCell>
-              <Link className='font-medium hover:underline text-cyan-500' href={`#`}>
-                Comprar/Vender
+              <Link className='font-medium hover:underline text-cyan-500' href={`${asset.id}`}>
+                Comprar
               </Link>
             </TableCell>
           </TableRow>
