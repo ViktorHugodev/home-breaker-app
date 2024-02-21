@@ -8,8 +8,8 @@ async function initTransaction(formData: FormData) {
   const wallet_id = formData.get('wallet_id')
   const asset_id = formData.get('asset_id')
   const type = formData.get('type')
-  console.log(shares, price, asset_id, type)
-  const response = await fetch(`http://localhost:3000/wallets/${wallet_id}/orders`, {
+  console.log('Compras =>', shares, price, asset_id, type)
+  const response = await fetch(`http://host.docker.internal:3000/wallets/${wallet_id}/orders`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -23,7 +23,8 @@ async function initTransaction(formData: FormData) {
       Asset: { id: asset_id, symbol: 'PETR4', price: 30 },
     }),
   })
-  console.log(response.status)
+  console.log('bodyJson', JSON.stringify({ shares, price, asset_id, type })),
+    console.log('Status =>', response.status)
   revalidateTag(`orders-wallet-${wallet_id}`)
   return await response.json()
 }

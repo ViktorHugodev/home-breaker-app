@@ -15,7 +15,6 @@ export function DefaultNavbar() {
   const pathname = usePathname()
   const params = useParams()
   const [walletData, setWalletData] = useState<WalletProps[]>([])
-  console.log('🚀 ~ DefaultNavbar ~ walletData:', walletData)
 
   useEffect(() => {
     const fetchData = async () => {
